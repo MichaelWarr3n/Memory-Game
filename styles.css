@@ -1,0 +1,89 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+html {
+    font-family: 'Amatic SC', sans-serif;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(17,220,253,0.2);
+    padding: 2% 0;
+}
+
+header h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    display: inline;
+}
+
+header img {
+    width: 6%;
+    height: auto;
+    margin: 1% 3%;
+}
+
+.buttons {
+    text-align: center;
+    margin: 2% 0;
+}
+
+.buttons button {
+    margin: 1% 5%;
+    background-color: rgb(0,0,255);
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: rgba(17,220,253,0.2);
+    color: black;
+}
+
+.gameContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gameCol {
+    display: inline-flex;
+    flex-direction: column;
+    margin: 0 0.3%;
+}
+
+.card {
+    padding-bottom: 150px;
+    padding-right: 150px;
+    margin: 2%;
+    background-color: #878787;
+    display: inline;
+}
+
+.card:hover {
+    background-color: #A1A1A1;
+    cursor: pointer;
+}
