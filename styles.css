@@ -76,8 +76,8 @@ header img {
 }
 
 .card {
-    padding-bottom: 150px;
-    padding-right: 150px;
+    height: 150px;
+    width: 150px;
     margin: 2%;
     background-color: #878787;
     display: inline;
@@ -86,4 +86,9 @@ header img {
 .card:hover {
     background-color: #A1A1A1;
     cursor: pointer;
+}
+
+.turnedCard {
+    height: 150px;
+    width: auto;
 }
