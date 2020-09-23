@@ -100,7 +100,7 @@ const clickCard = event => {
             window.setTimeout(function () {
                 firstFlippedElement.innerHTML = "";
                 secondFlippedElement.innerHTML = "";
-            }, 1000);
+            }, 1500);
         }
         firstFlipped = "";
         firstFlippedID = "";
