@@ -31,6 +31,14 @@ let strawberries = '<img class="turnedCard" src="images/croppedStrawberries.jpg"
 let shuffledNums = [];
 let shuffledFood = [];
 
+let activeFlipped = 0;
+let firstFlipped = "";
+let firstFlippedElement = "";
+let secondFlipped = "";
+let secondFlippedElement = "";
+let correctAnswers = 0;
+let incorrectAnswers = 0;
+
 /*--- Building Functions ---*/
 
 const shuffleArray = () => {
@@ -77,6 +85,28 @@ const clickCard = event => {
         event.target.innerHTML = shuffledFood[14];
     } else if (event.target.getAttribute('id') == 'card16') {
         event.target.innerHTML = shuffledFood[15];
+    }
+    activeFlipped++;
+    if (activeFlipped == 1) {
+        firstFlipped = event.target.innerHTML;
+        firstFlippedElement = event.target;
+    } else if (activeFlipped == 2) {
+        secondFlipped = event.target.innerHTML;
+        secondFlippedElement = event.target;
+        if (firstFlipped == secondFlipped) {
+            correctAnswers++;
+        } else if (firstFlipped != secondFlipped) {
+            incorrectAnswers++;
+            window.setTimeout(function () {
+                firstFlippedElement.innerHTML = "";
+                secondFlippedElement.innerHTML = "";
+            }, 1000);
+        }
+        firstFlipped = "";
+        firstFlippedID = "";
+        secondFlipped = "";
+        secondFlippedID = "";
+        activeFlipped = 0;
     }
 }
 
@@ -136,6 +166,13 @@ const resetCards = () => {
     shuffledNums = shuffleArray();
     shuffledFood = [];
     shuffledNums.forEach(locateFood);
+    correctAnswers = 0;
+    incorrectAnswers = 0;
+    firstFlipped = "";
+    firstFlippedID = "";
+    secondFlipped = "";
+    secondFlippedID = "";
+    activeFlipped = 0;
 }
 
 /*--- Game Begin ---*/
