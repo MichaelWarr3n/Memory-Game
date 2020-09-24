@@ -19,6 +19,7 @@ let card16 = document.getElementById("card16");
 
 let correctAnswersDisplayed = document.getElementById("correctAnswers");
 let incorrectAnswersDisplayed = document.getElementById("incorrectAnswers");
+let highScore = document.getElementById("highScore");
 
 let instructions = document.getElementById("myModal");
 let instructionsButton = document.getElementById("instructionsButton");
@@ -143,10 +144,13 @@ const clickCard = event => {
                 correctAnswersDisplayed.innerHTML = correctAnswers;
                 if (correctAnswers == 8) {
                     currentlyPlaying = false;
+                    if (highScore.innerHTML == "" || parseInt(highScore.innerHTML) > incorrectAnswers) {
+                        highScore.innerHTML = incorrectAnswers;
+                    }
                     if (incorrectAnswers < 6) {
-                        alert("Well played! This score is well above average");
-                    } else if (incorrectAnswers < 12) {
-                        alert("Not bad! This is a fairly impressive score");
+                        alert("Wow, well played! This score is very impressive");
+                    } else if (incorrectAnswers < 11) {
+                        alert("Not bad! This is a reasonable score");
                     } else if (incorrectAnswers < 16) {
                         alert("Nice try! But you can definitely do better than this");
                     } else {
@@ -161,7 +165,7 @@ const clickCard = event => {
                     firstFlippedElement.innerHTML = "";
                     secondFlippedElement.innerHTML = "";
                     currentlyPlaying = true;
-                }, 1000);
+                }, 1500);
             }
             firstFlipped = "";
             firstFlippedID = "";
