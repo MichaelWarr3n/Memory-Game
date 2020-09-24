@@ -17,6 +17,12 @@ let card14 = document.getElementById("card14");
 let card15 = document.getElementById("card15");
 let card16 = document.getElementById("card16");
 
+let correctAnswersDisplayed = document.getElementById("correctAnswers");
+let incorrectAnswersDisplayed = document.getElementById("incorrectAnswers");
+
+let instructions = document.getElementById("myModal");
+let instructionsButton = document.getElementById("instructionsButton");
+let closeBtn = document.getElementById("closeModal");
 let restartButton = document.getElementById("restartButton");
 
 let banana = '<img class="turnedCard" src="images/croppedBanana.jpg">';
@@ -39,75 +45,19 @@ let secondFlippedElement = "";
 let correctAnswers = 0;
 let incorrectAnswers = 0;
 
+let currentlyPlaying = true;
+
 /*--- Building Functions ---*/
 
 const shuffleArray = () => {
     let shuffled = [];
-    for(a = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]; i = a.length; i--) {
+    for (a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]; i = a.length; i--) {
         let random = a.splice(Math.floor(Math.random() * (i + 1)), 1)[0];
         if (random) {
             shuffled.push(random);
         }
     }
     return shuffled;
-}
-
-const clickCard = event => {
-    if (event.target.getAttribute('id') == 'card1') {
-        event.target.innerHTML = shuffledFood[0];
-    } else if (event.target.getAttribute('id') == 'card2') {
-        event.target.innerHTML = shuffledFood[1];
-    } else if (event.target.getAttribute('id') == 'card3') {
-        event.target.innerHTML = shuffledFood[2];
-    } else if (event.target.getAttribute('id') == 'card4') {
-        event.target.innerHTML = shuffledFood[3];
-    } else if (event.target.getAttribute('id') == 'card5') {
-        event.target.innerHTML = shuffledFood[4];
-    } else if (event.target.getAttribute('id') == 'card6') {
-        event.target.innerHTML = shuffledFood[5];
-    } else if (event.target.getAttribute('id') == 'card7') {
-        event.target.innerHTML = shuffledFood[6];
-    } else if (event.target.getAttribute('id') == 'card8') {
-        event.target.innerHTML = shuffledFood[7];
-    } else if (event.target.getAttribute('id') == 'card9') {
-        event.target.innerHTML = shuffledFood[8];
-    } else if (event.target.getAttribute('id') == 'card10') {
-        event.target.innerHTML = shuffledFood[9];
-    } else if (event.target.getAttribute('id') == 'card11') {
-        event.target.innerHTML = shuffledFood[10];
-    } else if (event.target.getAttribute('id') == 'card12') {
-        event.target.innerHTML = shuffledFood[11];
-    } else if (event.target.getAttribute('id') == 'card13') {
-        event.target.innerHTML = shuffledFood[12];
-    } else if (event.target.getAttribute('id') == 'card14') {
-        event.target.innerHTML = shuffledFood[13];
-    } else if (event.target.getAttribute('id') == 'card15') {
-        event.target.innerHTML = shuffledFood[14];
-    } else if (event.target.getAttribute('id') == 'card16') {
-        event.target.innerHTML = shuffledFood[15];
-    }
-    activeFlipped++;
-    if (activeFlipped == 1) {
-        firstFlipped = event.target.innerHTML;
-        firstFlippedElement = event.target;
-    } else if (activeFlipped == 2) {
-        secondFlipped = event.target.innerHTML;
-        secondFlippedElement = event.target;
-        if (firstFlipped == secondFlipped) {
-            correctAnswers++;
-        } else if (firstFlipped != secondFlipped) {
-            incorrectAnswers++;
-            window.setTimeout(function () {
-                firstFlippedElement.innerHTML = "";
-                secondFlippedElement.innerHTML = "";
-            }, 1500);
-        }
-        firstFlipped = "";
-        firstFlippedID = "";
-        secondFlipped = "";
-        secondFlippedID = "";
-        activeFlipped = 0;
-    }
 }
 
 const locateFood = x => {
@@ -146,6 +96,82 @@ const locateFood = x => {
     }
 }
 
+const clickCard = event => {
+    if (currentlyPlaying) {
+        if (event.target.getAttribute('id') == 'card1') {
+            event.target.innerHTML = shuffledFood[0];
+        } else if (event.target.getAttribute('id') == 'card2') {
+            event.target.innerHTML = shuffledFood[1];
+        } else if (event.target.getAttribute('id') == 'card3') {
+            event.target.innerHTML = shuffledFood[2];
+        } else if (event.target.getAttribute('id') == 'card4') {
+            event.target.innerHTML = shuffledFood[3];
+        } else if (event.target.getAttribute('id') == 'card5') {
+            event.target.innerHTML = shuffledFood[4];
+        } else if (event.target.getAttribute('id') == 'card6') {
+            event.target.innerHTML = shuffledFood[5];
+        } else if (event.target.getAttribute('id') == 'card7') {
+            event.target.innerHTML = shuffledFood[6];
+        } else if (event.target.getAttribute('id') == 'card8') {
+            event.target.innerHTML = shuffledFood[7];
+        } else if (event.target.getAttribute('id') == 'card9') {
+            event.target.innerHTML = shuffledFood[8];
+        } else if (event.target.getAttribute('id') == 'card10') {
+            event.target.innerHTML = shuffledFood[9];
+        } else if (event.target.getAttribute('id') == 'card11') {
+            event.target.innerHTML = shuffledFood[10];
+        } else if (event.target.getAttribute('id') == 'card12') {
+            event.target.innerHTML = shuffledFood[11];
+        } else if (event.target.getAttribute('id') == 'card13') {
+            event.target.innerHTML = shuffledFood[12];
+        } else if (event.target.getAttribute('id') == 'card14') {
+            event.target.innerHTML = shuffledFood[13];
+        } else if (event.target.getAttribute('id') == 'card15') {
+            event.target.innerHTML = shuffledFood[14];
+        } else if (event.target.getAttribute('id') == 'card16') {
+            event.target.innerHTML = shuffledFood[15];
+        }
+        activeFlipped++;
+        if (activeFlipped == 1) {
+            firstFlipped = event.target.innerHTML;
+            firstFlippedElement = event.target;
+        } else if (activeFlipped == 2) {
+            secondFlipped = event.target.innerHTML;
+            secondFlippedElement = event.target;
+            if (firstFlipped == secondFlipped) {
+                correctAnswers++;
+                correctAnswersDisplayed.innerHTML = correctAnswers;
+                if (correctAnswers == 8) {
+                    currentlyPlaying = false;
+                    if (incorrectAnswers < 6) {
+                        alert("Well played! This score is well above average");
+                    } else if (incorrectAnswers < 12) {
+                        alert("Not bad! This is a fairly impressive score");
+                    } else if (incorrectAnswers < 16) {
+                        alert("Nice try! But you can definitely do better than this");
+                    } else {
+                        alert("Did you even try?!");
+                    }
+                }
+            } else if (firstFlipped != secondFlipped) {
+                currentlyPlaying = false;
+                incorrectAnswers++;
+                incorrectAnswersDisplayed.innerHTML = incorrectAnswers;
+                window.setTimeout(function () {
+                    firstFlippedElement.innerHTML = "";
+                    secondFlippedElement.innerHTML = "";
+                    currentlyPlaying = true;
+                }, 1000);
+            }
+            firstFlipped = "";
+            firstFlippedID = "";
+            secondFlipped = "";
+            secondFlippedID = "";
+            activeFlipped = 0;
+        }
+    }
+}
+
 const resetCards = () => {
     card1.innerHTML = '';
     card2.innerHTML = '';
@@ -168,11 +194,14 @@ const resetCards = () => {
     shuffledNums.forEach(locateFood);
     correctAnswers = 0;
     incorrectAnswers = 0;
+    correctAnswersDisplayed.innerHTML = "0";
+    incorrectAnswersDisplayed.innerHTML = "0";
     firstFlipped = "";
     firstFlippedID = "";
     secondFlipped = "";
     secondFlippedID = "";
     activeFlipped = 0;
+    currentlyPlaying = true;
 }
 
 /*--- Game Begin ---*/
@@ -197,5 +226,17 @@ card13.addEventListener('click', clickCard);
 card14.addEventListener('click', clickCard);
 card15.addEventListener('click', clickCard);
 card16.addEventListener('click', clickCard);
+
+instructionsButton.addEventListener('click', function(){
+    instructions.style.display = "block";
+});
+closeBtn.addEventListener('click', function(){
+    instructions.style.display = "none";
+});
+window.onclick = function(m) {
+    if(m.target == instructions) {
+        modal.style.display = "none";
+    }
+}
 
 restartButton.addEventListener('click', resetCards);

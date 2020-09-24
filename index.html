@@ -22,9 +22,24 @@
     </header>
     
     <section class="buttons">
-        <button>Instructions</button>
+        <button id="instuctionsButton">Instructions</button>
+        <div class="stats">
+            <span class="title">Correct Answers</span>
+            <span class="num" id="correctAnswers">0</span>
+        </div>
+        <div class="stats">
+            <span class="title">Incorrect Answers</span>
+            <span class="num" id="incorrectAnswers">0</span>
+        </div>
         <button id="restartButton">Restart</button>
     </section>
+    
+    <div id="myModal" class="modal">
+        <div class="modalContent">
+            <span class="close" id="closeModal">&times;</span>
+            <p>some instructions</p>
+        </div>
+    </div>
     
     <section class="gameContainer">
         <div class="gameCol">
