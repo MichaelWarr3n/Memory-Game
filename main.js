@@ -172,6 +172,14 @@ const clickCard = event => {
     }
 }
 
+const showModal = () => {
+    instructions.style.display = "block";
+}
+
+const hideModal = () => {
+    instructions.style.display = "none";
+}
+
 const resetCards = () => {
     card1.innerHTML = '';
     card2.innerHTML = '';
@@ -227,16 +235,12 @@ card14.addEventListener('click', clickCard);
 card15.addEventListener('click', clickCard);
 card16.addEventListener('click', clickCard);
 
-instructionsButton.addEventListener('click', function(){
-    instructions.style.display = "block";
-});
-closeBtn.addEventListener('click', function(){
-    instructions.style.display = "none";
-});
-window.onclick = function(m) {
-    if(m.target == instructions) {
-        modal.style.display = "none";
+instructionsButton.addEventListener('click', showModal);
+closeBtn.addEventListener('click', hideModal);
+window.addEventListener('click', function(event){
+    if(event.target == instructions) {
+        hideModal();
     }
-}
+});
 
 restartButton.addEventListener('click', resetCards);
