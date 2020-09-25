@@ -136,9 +136,11 @@ const clickCard = event => {
         if (activeFlipped == 1) {
             firstFlipped = event.target.innerHTML;
             firstFlippedElement = event.target;
+            firstFlippedElement.removeEventListener('click', clickCard);
         } else if (activeFlipped == 2) {
             secondFlipped = event.target.innerHTML;
             secondFlippedElement = event.target;
+            firstFlippedElement.addEventListener('click', clickCard)
             if (firstFlipped == secondFlipped) {
                 correctAnswers++;
                 correctAnswersDisplayed.innerHTML = correctAnswers;
@@ -165,12 +167,10 @@ const clickCard = event => {
                     firstFlippedElement.innerHTML = "";
                     secondFlippedElement.innerHTML = "";
                     currentlyPlaying = true;
-                }, 1500);
+                }, 1000);
             }
             firstFlipped = "";
-            firstFlippedID = "";
             secondFlipped = "";
-            secondFlippedID = "";
             activeFlipped = 0;
         }
     }
@@ -209,9 +209,9 @@ const resetCards = () => {
     correctAnswersDisplayed.innerHTML = "0";
     incorrectAnswersDisplayed.innerHTML = "0";
     firstFlipped = "";
-    firstFlippedID = "";
+    firstFlippedElement = "";
     secondFlipped = "";
-    secondFlippedID = "";
+    secondFlippedElement = "";
     activeFlipped = 0;
     currentlyPlaying = true;
 }
