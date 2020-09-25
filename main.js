@@ -1,21 +1,7 @@
 /*--- Declaring Variables ---*/
 
-let card1 = document.getElementById("card1");
-let card2 = document.getElementById("card2");
-let card3 = document.getElementById("card3");
-let card4 = document.getElementById("card4");
-let card5 = document.getElementById("card5");
-let card6 = document.getElementById("card6");
-let card7 = document.getElementById("card7");
-let card8 = document.getElementById("card8");
-let card9 = document.getElementById("card9");
-let card10 = document.getElementById("card10");
-let card11 = document.getElementById("card11");
-let card12 = document.getElementById("card12");
-let card13 = document.getElementById("card13");
-let card14 = document.getElementById("card14");
-let card15 = document.getElementById("card15");
-let card16 = document.getElementById("card16");
+let cards = [
+    document.getElementById("card1"), document.getElementById("card2"), document.getElementById("card3"), document.getElementById("card4"), document.getElementById("card5"), document.getElementById("card6"), document.getElementById("card7"), document.getElementById("card8"), document.getElementById("card9"), document.getElementById("card10"), document.getElementById("card11"), document.getElementById("card12"), document.getElementById("card13"), document.getElementById("card14"), document.getElementById("card15"), document.getElementById("card16")];
 
 let correctAnswersDisplayed = document.getElementById("correctAnswers");
 let incorrectAnswersDisplayed = document.getElementById("incorrectAnswers");
@@ -26,14 +12,7 @@ let instructionsButton = document.getElementById("instructionsButton");
 let closeBtn = document.getElementById("closeModal");
 let restartButton = document.getElementById("restartButton");
 
-let banana = '<img class="turnedCard" src="images/croppedBanana.jpg">';
-let chocolate = '<img class="turnedCard" src="images/croppedChocolate.jpg">';
-let coffee = '<img class="turnedCard" src="images/croppedCoffee.jpg">';
-let eggs = '<img class="turnedCard" src="images/croppedEggs.jpg">';
-let pancakes = '<img class="turnedCard" src="images/croppedPancakes.jpg">';
-let pineapple = '<img class="turnedCard" src="images/croppedPineapple.jpg">';
-let pizza = '<img class="turnedCard" src="images/croppedPizza.jpg">';
-let strawberries = '<img class="turnedCard" src="images/croppedStrawberries.jpg">';
+let fruit = ['<img class="turnedCard" src="images/croppedBanana.jpg">', '<img class="turnedCard" src="images/croppedChocolate.jpg">', '<img class="turnedCard" src="images/croppedCoffee.jpg">', '<img class="turnedCard" src="images/croppedEggs.jpg">', '<img class="turnedCard" src="images/croppedPancakes.jpg">', '<img class="turnedCard" src="images/croppedPineapple.jpg">', '<img class="turnedCard" src="images/croppedPizza.jpg">', '<img class="turnedCard" src="images/croppedStrawberries.jpg">', '<img class="turnedCard" src="images/croppedBanana.jpg">', '<img class="turnedCard" src="images/croppedChocolate.jpg">', '<img class="turnedCard" src="images/croppedCoffee.jpg">', '<img class="turnedCard" src="images/croppedEggs.jpg">', '<img class="turnedCard" src="images/croppedPancakes.jpg">', '<img class="turnedCard" src="images/croppedPineapple.jpg">', '<img class="turnedCard" src="images/croppedPizza.jpg">', '<img class="turnedCard" src="images/croppedStrawberries.jpg">'];
 
 let shuffledNums = [];
 let shuffledFood = [];
@@ -52,9 +31,9 @@ let currentlyPlaying = true;
 
 const shuffleArray = () => {
     let shuffled = [];
-    for (a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]; i = a.length; i--) {
+    for (a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]; i = a.length; i--) {
         let random = a.splice(Math.floor(Math.random() * (i + 1)), 1)[0];
-        if (random) {
+        if (random != undefined) {
             shuffled.push(random);
         }
     }
@@ -62,39 +41,7 @@ const shuffleArray = () => {
 }
 
 const locateFood = x => {
-    if (x == 1) {
-        shuffledFood.push(banana);
-    } else if (x == 2) {
-        shuffledFood.push(chocolate);
-    } else if (x == 3) {
-        shuffledFood.push(coffee);
-    } else if (x == 4) {
-        shuffledFood.push(eggs);
-    } else if (x == 5) {
-        shuffledFood.push(pancakes);
-    } else if (x == 6) {
-        shuffledFood.push(pineapple);
-    } else if (x == 7) {
-        shuffledFood.push(pizza);
-    } else if (x == 8) {
-        shuffledFood.push(strawberries);
-    } else if (x == 9) {
-        shuffledFood.push(banana);
-    } else if (x == 10) {
-        shuffledFood.push(chocolate);
-    } else if (x == 11) {
-        shuffledFood.push(coffee);
-    } else if (x == 12) {
-        shuffledFood.push(eggs);
-    } else if (x == 13) {
-        shuffledFood.push(pancakes);
-    } else if (x == 14) {
-        shuffledFood.push(pineapple);
-    } else if (x == 15) {
-        shuffledFood.push(pizza);
-    } else if (x == 16) {
-        shuffledFood.push(strawberries);
-    }
+    shuffledFood.push(fruit[x]);
 }
 
 const clickCard = event => {
@@ -140,8 +87,8 @@ const clickCard = event => {
         } else if (activeFlipped == 2) {
             secondFlipped = event.target.innerHTML;
             secondFlippedElement = event.target;
-            firstFlippedElement.addEventListener('click', clickCard)
             if (firstFlipped == secondFlipped) {
+                secondFlippedElement.removeEventListener('click', clickCard);
                 correctAnswers++;
                 correctAnswersDisplayed.innerHTML = correctAnswers;
                 if (correctAnswers == 8) {
@@ -163,6 +110,7 @@ const clickCard = event => {
                 currentlyPlaying = false;
                 incorrectAnswers++;
                 incorrectAnswersDisplayed.innerHTML = incorrectAnswers;
+                firstFlippedElement.addEventListener('click', clickCard);
                 window.setTimeout(function () {
                     firstFlippedElement.innerHTML = "";
                     secondFlippedElement.innerHTML = "";
@@ -176,6 +124,14 @@ const clickCard = event => {
     }
 }
 
+const resetInnerHTML = x => {
+    x.innerHTML = "";
+}
+
+const addClickListener = x => {
+    x.addEventListener('click', clickCard);
+}
+
 const showModal = () => {
     instructions.style.display = "block";
 }
@@ -185,25 +141,11 @@ const hideModal = () => {
 }
 
 const resetCards = () => {
-    card1.innerHTML = '';
-    card2.innerHTML = '';
-    card3.innerHTML = '';
-    card4.innerHTML = '';
-    card5.innerHTML = '';
-    card6.innerHTML = '';
-    card7.innerHTML = '';
-    card8.innerHTML = '';
-    card9.innerHTML = '';
-    card10.innerHTML = '';
-    card11.innerHTML = '';
-    card12.innerHTML = '';
-    card13.innerHTML = '';
-    card14.innerHTML = '';
-    card15.innerHTML = '';
-    card16.innerHTML = '';
+    cards.forEach(resetInnerHTML);
     shuffledNums = shuffleArray();
     shuffledFood = [];
     shuffledNums.forEach(locateFood);
+    cards.forEach(addClickListener);
     correctAnswers = 0;
     incorrectAnswers = 0;
     correctAnswersDisplayed.innerHTML = "0";
@@ -222,27 +164,14 @@ shuffledNums = shuffleArray();
 
 shuffledNums.forEach(locateFood);
 
-card1.addEventListener('click', clickCard);
-card2.addEventListener('click', clickCard);
-card3.addEventListener('click', clickCard);
-card4.addEventListener('click', clickCard);
-card5.addEventListener('click', clickCard);
-card6.addEventListener('click', clickCard);
-card7.addEventListener('click', clickCard);
-card8.addEventListener('click', clickCard);
-card9.addEventListener('click', clickCard);
-card10.addEventListener('click', clickCard);
-card11.addEventListener('click', clickCard);
-card12.addEventListener('click', clickCard);
-card13.addEventListener('click', clickCard);
-card14.addEventListener('click', clickCard);
-card15.addEventListener('click', clickCard);
-card16.addEventListener('click', clickCard);
+cards.forEach(addClickListener);
+
+/*-- Instructions and Reset buttons --*/
 
 instructionsButton.addEventListener('click', showModal);
 closeBtn.addEventListener('click', hideModal);
-window.addEventListener('click', function(event){
-    if(event.target == instructions) {
+window.addEventListener('click', function (event) {
+    if (event.target == instructions) {
         hideModal();
     }
 });
