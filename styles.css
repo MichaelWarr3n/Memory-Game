@@ -152,3 +152,7 @@ header img {
     height: 150px;
     width: auto;
 }
+
+.turnedCard:hover {
+    cursor: default;
+}
