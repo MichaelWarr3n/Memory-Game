@@ -1,7 +1,6 @@
 /*--- Declaring Variables ---*/
 
-let cards = [
-    document.getElementById("card1"), document.getElementById("card2"), document.getElementById("card3"), document.getElementById("card4"), document.getElementById("card5"), document.getElementById("card6"), document.getElementById("card7"), document.getElementById("card8"), document.getElementById("card9"), document.getElementById("card10"), document.getElementById("card11"), document.getElementById("card12"), document.getElementById("card13"), document.getElementById("card14"), document.getElementById("card15"), document.getElementById("card16")];
+let cards = [document.getElementById("card1"), document.getElementById("card2"), document.getElementById("card3"), document.getElementById("card4"), document.getElementById("card5"), document.getElementById("card6"), document.getElementById("card7"), document.getElementById("card8"), document.getElementById("card9"), document.getElementById("card10"), document.getElementById("card11"), document.getElementById("card12"), document.getElementById("card13"), document.getElementById("card14"), document.getElementById("card15"), document.getElementById("card16")];
 
 let correctAnswersDisplayed = document.getElementById("correctAnswers");
 let incorrectAnswersDisplayed = document.getElementById("incorrectAnswers");
