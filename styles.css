@@ -89,6 +89,7 @@ video {
 
 html {
     font-family: 'Amatic SC', sans-serif;
+    background-color: rgba(226, 0, 255, 0.1);
 }
 
 header {
@@ -96,7 +97,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(17, 220, 253, 0.2);
+    background-color: rgba(17, 220, 253, 0.4);
     padding: 2% 0;
 }
 
@@ -119,7 +120,7 @@ header img {
 
 .heading .buttons button {
     margin: 2% 5%;
-    background-color: rgb(0, 0, 255);
+    background-color: rgb(28, 138, 219);
     color: white;
     padding: 10px;
     border-radius: 15px;
@@ -127,7 +128,7 @@ header img {
 }
 
 .heading .buttons button:hover {
-    background-color: rgba(17, 220, 253, 0.2);
+    background-color: rgba(17, 220, 253, 0.4);
     color: black;
 }
 
@@ -180,6 +181,7 @@ header img {
     display: inline-flex;
     margin: auto 3%;
     flex-direction: column;
+    font-weight: 700;
 }
 
 .stats .title {
@@ -188,7 +190,6 @@ header img {
 }
 
 .stats .num {
-    font-weight: 700;
     font-size: 2rem;
 }
 
@@ -302,7 +303,6 @@ header img {
     }
 
     .stats .num {
-        font-weight: 700;
         font-size: 1.5rem;
     }
     
@@ -345,7 +345,6 @@ header img {
     }
 
     .stats .num {
-        font-weight: 700;
         font-size: 1.3rem;
     }
     
@@ -388,7 +387,6 @@ header img {
     }
 
     .stats .num {
-        font-weight: 700;
         font-size: 1.1rem;
     }
     
