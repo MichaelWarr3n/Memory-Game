@@ -114,7 +114,7 @@ const clickCard = event => {
                     firstFlippedElement.innerHTML = "";
                     secondFlippedElement.innerHTML = "";
                     currentlyPlaying = true;
-                }, 1000);
+                }, 2000);
             }
             firstFlipped = "";
             secondFlipped = "";
