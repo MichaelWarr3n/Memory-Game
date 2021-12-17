@@ -11,7 +11,7 @@ let instructionsButton = document.getElementById("instructionsButton");
 let closeBtn = document.getElementById("closeModal");
 let restartButton = document.getElementById("restartButton");
 
-let fruit = ['<img class="turnedCard" src="images/croppedBanana.jpg">', '<img class="turnedCard" src="images/croppedChocolate.jpg">', '<img class="turnedCard" src="images/croppedCoffee.jpg">', '<img class="turnedCard" src="images/croppedEggs.jpg">', '<img class="turnedCard" src="images/croppedPancakes.jpg">', '<img class="turnedCard" src="images/croppedPineapple.jpg">', '<img class="turnedCard" src="images/croppedPizza.jpg">', '<img class="turnedCard" src="images/croppedStrawberries.jpg">', '<img class="turnedCard" src="images/croppedBanana.jpg">', '<img class="turnedCard" src="images/croppedChocolate.jpg">', '<img class="turnedCard" src="images/croppedCoffee.jpg">', '<img class="turnedCard" src="images/croppedEggs.jpg">', '<img class="turnedCard" src="images/croppedPancakes.jpg">', '<img class="turnedCard" src="images/croppedPineapple.jpg">', '<img class="turnedCard" src="images/croppedPizza.jpg">', '<img class="turnedCard" src="images/croppedStrawberries.jpg">'];
+let fruit = ['<img class="turnedCard" src="images/croppedBanana.jpg" alt="Banana">', '<img class="turnedCard" src="images/croppedChocolate.jpg" alt="Chocolate">', '<img class="turnedCard" src="images/croppedCoffee.jpg" alt="Coffee">', '<img class="turnedCard" src="images/croppedEggs.jpg" alt="Eggs">', '<img class="turnedCard" src="images/croppedPancakes.jpg" alt="Pancakes">', '<img class="turnedCard" src="images/croppedPineapple.jpg" alt="Pineapple">', '<img class="turnedCard" src="images/croppedPizza.jpg" alt="Pizza">', '<img class="turnedCard" src="images/croppedStrawberries.jpg" alt="Strawberries">', '<img class="turnedCard" src="images/croppedBanana.jpg" alt="Banana">', '<img class="turnedCard" src="images/croppedChocolate.jpg" alt="Chocolate">', '<img class="turnedCard" src="images/croppedCoffee.jpg" alt="Coffee">', '<img class="turnedCard" src="images/croppedEggs.jpg" alt="Eggs">', '<img class="turnedCard" src="images/croppedPancakes.jpg" alt="Pancakes">', '<img class="turnedCard" src="images/croppedPineapple.jpg" alt="Pineapple">', '<img class="turnedCard" src="images/croppedPizza.jpg" alt="Pizza">', '<img class="turnedCard" src="images/croppedStrawberries.jpg" alt="Strawberries">'];
 
 let shuffledNums = [];
 let shuffledFood = [];
@@ -43,7 +43,7 @@ const locateFood = x => {
     shuffledFood.push(fruit[x]);
 }
 
-const clickCard = event => {
+function clickCard(event) {
     if (currentlyPlaying) {
         if (event.target.getAttribute('id') == 'card1') {
             event.target.innerHTML = shuffledFood[0];
@@ -83,11 +83,13 @@ const clickCard = event => {
             firstFlipped = event.target.innerHTML;
             firstFlippedElement = event.target;
             firstFlippedElement.removeEventListener('click', clickCard);
+            firstFlippedElement.removeEventListener('keyup', enterCard);
         } else if (activeFlipped == 2) {
             secondFlipped = event.target.innerHTML;
             secondFlippedElement = event.target;
             if (firstFlipped == secondFlipped) {
                 secondFlippedElement.removeEventListener('click', clickCard);
+                secondFlippedElement.removeEventListener('keyup', enterCard);
                 correctAnswers++;
                 correctAnswersDisplayed.innerHTML = correctAnswers;
                 if (correctAnswers == 8) {
@@ -109,7 +111,7 @@ const clickCard = event => {
                 currentlyPlaying = false;
                 incorrectAnswers++;
                 incorrectAnswersDisplayed.innerHTML = incorrectAnswers;
-                firstFlippedElement.addEventListener('click', clickCard);
+                addClickListener(firstFlippedElement);
                 window.setTimeout(function () {
                     firstFlippedElement.innerHTML = "";
                     secondFlippedElement.innerHTML = "";
@@ -123,12 +125,19 @@ const clickCard = event => {
     }
 }
 
+function enterCard(event) {
+    if(event.keyCode == 13) {
+        clickCard(event);
+    }
+}
+
 const resetInnerHTML = x => {
     x.innerHTML = "";
 }
 
-const addClickListener = x => {
+function addClickListener(x) {
     x.addEventListener('click', clickCard);
+    x.addEventListener('keyup', enterCard);
 }
 
 const showModal = () => {
@@ -169,6 +178,12 @@ cards.forEach(addClickListener);
 
 instructionsButton.addEventListener('click', showModal);
 closeBtn.addEventListener('click', hideModal);
+closeBtn.addEventListener('keyup', function(e) {
+    if(e.keyCode == 13) {
+        hideModal();
+    }
+});
+
 window.addEventListener('click', function (event) {
     if (event.target == instructions) {
         hideModal();
