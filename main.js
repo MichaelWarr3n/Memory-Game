@@ -68,7 +68,7 @@ function clickCard(event) {
                 correctAnswersDisplayed.innerHTML = correctAnswers;
                 if (correctAnswers < 8) {
                     window.setTimeout(function () {
-                        srSpeak(`Correct, you have ${correctAnswers} correct answers`);
+                        srSpeak(`Correct, that's ${correctAnswers} correct answers`);
                     }, 2000);
                 }
                 if (correctAnswers == 8) {
@@ -91,7 +91,7 @@ function clickCard(event) {
                     firstFlippedElement.innerHTML = "";
                     secondFlippedElement.innerHTML = "";
                     currentlyPlaying = true;
-                    srSpeak(`Incorrect, you have ${incorrectAnswers} incorrect answers`);
+                    srSpeak(`Incorrect`);
                 }, 2000);
             }
             firstFlipped = "";

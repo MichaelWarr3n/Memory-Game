@@ -89,7 +89,7 @@ video {
 
 html {
     font-family: 'Amatic SC', sans-serif;
-    background-color: rgba(226, 0, 255, 0.1);
+    background-color: rgba(250, 202, 1, 1);
 }
 
 header {
@@ -97,7 +97,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(17, 220, 253, 0.4);
+    background-color: rgba(55, 64, 250, 1);
     padding: 2% 0;
 }
 
@@ -105,6 +105,7 @@ header h1 {
     font-size: 5rem;
     font-weight: 700;
     display: inline;
+    color: #fff;
 }
 
 header img {
@@ -129,16 +130,16 @@ header img {
 
 .heading .buttons button {
     margin: 0 5%;
-    background-color: rgb(28, 138, 219);
-    color: white;
+    background-color: rgba(55, 64, 250);
+    color: #fff;
     padding: 10px;
     border-radius: 15px;
     cursor: pointer;
 }
 
 .heading .buttons button:hover {
-    background-color: rgba(17, 220, 253, 0.4);
-    color: black;
+    background-color: rgb(190, 193, 255);
+    color: #000;
 }
 
 .modal {
